@@ -24,6 +24,9 @@ public class MainActivity extends Activity {
     BluetoothAdapter myBluetoothAdapter;
     static final int REQUEST_BLUETOOTH_CONNECT = 1;
     boolean connectionState = false;
+    RelativeLayout adventureButton;
+    RelativeLayout photonConnectionButton;
+    TextView connectionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //tekst na przycisku polaczenia z photonem
-        final TextView connectionText = (TextView) findViewById(R.id.connectionText);
-
+        connectionText = (TextView) findViewById(R.id.connectionText);
 
         //klikalny obszar layoutu - Adventure
-        final RelativeLayout adventureButton = (RelativeLayout) findViewById(R.id.adventureLayout);
+        adventureButton = (RelativeLayout) findViewById(R.id.adventureLayout);
         adventureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,17 +50,17 @@ public class MainActivity extends Activity {
         adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, 0, 0));
 
         //klikalny obszar layoutu - PhotonConnection
-        final RelativeLayout photonConnectionButton = (RelativeLayout) findViewById(R.id.photonConnectionLayout);
+        photonConnectionButton = (RelativeLayout) findViewById(R.id.photonConnectionLayout);
         photonConnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"Tutaj otworzy sie kolejne okno do polaczenia z Photonem", Toast.LENGTH_SHORT).show();
                 if(connectionState){
                     disable(adventureButton);
                     adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0f));
                     photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 66.67f));
                     connectionText.setText("Połącz z Photonem");
+                    CoreDevice.activeDevice = null;
                 }else {
 
                     myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -77,11 +79,6 @@ public class MainActivity extends Activity {
                     } else {
                         startActivity(new Intent(getApplicationContext(), PhotonDeviceListActivity.class));
                     }
-
-                    enable(adventureButton);
-                    adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
-                    photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
-                    connectionText.setText("Rozłącz z Photonem");
                 }
 
                 connectionState = !connectionState;
@@ -104,7 +101,30 @@ public class MainActivity extends Activity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                // 1. Instantiate an AlertDialog.Builder with its constructor
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                // Add the buttons
+                builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+                // 2. Chain together various setter methods to set the dialog
+                // characteristics
+                builder.setMessage("Czy chcesz opuścić aplikację?").setTitle(
+                        "Wyjście z aplikacji");
+
+                // 3. Get the AlertDialog from create()
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
             }
         });
 
@@ -160,6 +180,33 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        try {
+            if (CoreDevice.activeDevice == null) {
+
+            } else {
+
+                enable(adventureButton);
+                adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
+                photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
+                connectionText.setText("Rozłącz z Photonem");
+
+                /*if (myBluetoothService.getState())
+                    Log.i("onResume", "Połączony");
+                else {
+                    Log.i("onResume", "Niepołączony2");
+                    myBluetoothService.connect();
+                */
+
+                }
+
+        } catch (Exception e) {
+        }
     }
 
     @Override
