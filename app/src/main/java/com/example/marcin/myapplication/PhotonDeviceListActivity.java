@@ -38,14 +38,50 @@ public class PhotonDeviceListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photon_device_list);
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
         photonDevicePairedListView = (ListView) findViewById(R.id.photonDevicePairedListView);
         photonDeviceListView = (ListView) findViewById(R.id.photonDeviceListView);
+
         findButton = (RelativeLayout) findViewById(R.id.findLayout);
+        RelativeLayout exitButton = (RelativeLayout) findViewById(R.id.exitBluetoothLayout);
 
         stateDiscoverLabel = (TextView) findViewById(R.id.stateDiscoverLabel);
         findText = (TextView) findViewById(R.id.findText);
 
+        filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findButton.setEnabled(false);
+                //wysylamy rozgloszenie z akcja ACTION_FOUND, ktore odbiera BroadcastReceiver - mReceiver
+                registerReceiver(mReceiver, filter);
+
+                //czyscimy liste urzadzen i rozpoczynamy na nowo
+                discoverBluetoothDevicesList.clear();
+                ArrayAdapter<DiscoverBluetoothDevice> adapter = new ArrayAdapter<DiscoverBluetoothDevice>(PhotonDeviceListActivity.this, android.R.layout.simple_list_item_1, discoverBluetoothDevicesList);
+                photonDeviceListView.setAdapter(adapter);
+                stateDiscoverLabel.setText("Trwa wyszukiwanie...");
+                findText.setText("Wyszukiwanie w toku...");
+
+                //zapobiegawczo zatrzymujemy aktualne wyszukiwanie i rozpoczynamy nowe
+
+                myBluetoothAdapter.cancelDiscovery();
+                myBluetoothAdapter.startDiscovery();
+            }
+        });
+
         Set<BluetoothDevice> pairedDevices = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
+        pairedBluetoothDevicesList.clear();
         // If there are paired devices
         if (pairedDevices.size() > 0) {
             // Loop through paired devices
@@ -81,9 +117,7 @@ public class PhotonDeviceListActivity extends Activity {
             }
         });
 
-        filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
 
         //wysylamy rozgloszenie z akcja ACTION_FOUND, ktore odbiera BroadcastReceiver - mReceiver
         registerReceiver(mReceiver, filter);
@@ -93,7 +127,7 @@ public class PhotonDeviceListActivity extends Activity {
         ArrayAdapter<DiscoverBluetoothDevice> adapter = new ArrayAdapter<DiscoverBluetoothDevice>(PhotonDeviceListActivity.this, android.R.layout.simple_list_item_1, discoverBluetoothDevicesList);
         photonDeviceListView.setAdapter(adapter);
         stateDiscoverLabel.setText("Trwa wyszukiwanie...");
-
+        findText.setText("Wyszukiwanie w toku...");
         //zapobiegawczo zatrzymujemy aktualne wyszukiwanie i rozpoczynamy nowe
 
         myBluetoothAdapter.cancelDiscovery();
@@ -142,7 +176,7 @@ public class PhotonDeviceListActivity extends Activity {
                 // Add the name and address to an array adapter to show in a
                 // ListView
                 discoverBluetoothDevicesList.add(new DiscoverBluetoothDevice(device.getName(), device.getAddress(), device.getBondState()));
-                ArrayAdapter<DiscoverBluetoothDevice> adapter = new ArrayAdapter<DiscoverBluetoothDevice>(PhotonDeviceListActivity.this, android.R.layout.simple_list_item_1, pairedBluetoothDevicesList);
+                ArrayAdapter<DiscoverBluetoothDevice> adapter = new ArrayAdapter<DiscoverBluetoothDevice>(PhotonDeviceListActivity.this, android.R.layout.simple_list_item_1, discoverBluetoothDevicesList);
                 photonDeviceListView.setAdapter(adapter);
 
                 stateDiscoverLabel.setText("Wyszukiwanie zakończone.");

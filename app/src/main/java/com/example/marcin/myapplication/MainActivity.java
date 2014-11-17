@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
                         Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                         startActivityForResult(enableBluetoothIntent, REQUEST_BLUETOOTH_CONNECT);
                     } else {
-                        //startActivity(new Intent(getApplicationContext(), DeviceListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PhotonDeviceListActivity.class));
                     }
 
                     enable(adventureButton);
@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
         if(requestCode == REQUEST_BLUETOOTH_CONNECT){
             if(resultCode == RESULT_OK){
                 Toast.makeText(getApplicationContext(),"Moduł Bluetooth został włączony", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(getApplicationContext(), DeviceListActivity.class));
+                startActivity(new Intent(getApplicationContext(), PhotonDeviceListActivity.class));
             } else {
                 Toast.makeText(getApplicationContext(),"Moduł Bluetooth nie został włączony", Toast.LENGTH_SHORT).show();
             }
