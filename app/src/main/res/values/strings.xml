@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_adventure">AdventureActivity</string>
     <string name="title_activity_fun">FunActivity</string>
+    <string name="title_activity_photon_device_list">PhotonDeviceListActivity</string>
 
 </resources>

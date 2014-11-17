@@ -1,7 +1,10 @@
 package com.example.marcin.myapplication;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
@@ -17,6 +20,9 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+    //zmienne
+    BluetoothAdapter myBluetoothAdapter;
+    static final int REQUEST_BLUETOOTH_CONNECT = 1;
     boolean connectionState = false;
 
     @Override
@@ -54,8 +60,23 @@ public class MainActivity extends Activity {
                     photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 66.67f));
                     connectionText.setText("Połącz z Photonem");
                 }else {
-                    
 
+                    myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+                    // urządzenie nie obsługuje Bluetooth
+                    if(myBluetoothAdapter == null){
+                       Toast.makeText(getApplicationContext(),"Twoje urządzenie nie obsługuje Bluetooth.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+
+                    // urządzenie obsługuje Bluetooth ale nie jest wlaczony
+                    if(!myBluetoothAdapter.isEnabled()){
+                        Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                        startActivityForResult(enableBluetoothIntent, REQUEST_BLUETOOTH_CONNECT);
+                    } else {
+                        //startActivity(new Intent(getApplicationContext(), DeviceListActivity.class));
+                    }
 
                     enable(adventureButton);
                     adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
@@ -101,6 +122,17 @@ public class MainActivity extends Activity {
         layout.setEnabled(true);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_BLUETOOTH_CONNECT){
+            if(resultCode == RESULT_OK){
+                Toast.makeText(getApplicationContext(),"Moduł Bluetooth został włączony", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(getApplicationContext(), DeviceListActivity.class));
+            } else {
+                Toast.makeText(getApplicationContext(),"Moduł Bluetooth nie został włączony", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,7 +164,29 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        // Add the buttons
+        builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        // 2. Chain together various setter methods to set the dialog
+        // characteristics
+        builder.setMessage("Czy chcesz opuścić aplikację?").setTitle(
+                "Wyjście z aplikacji");
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 }
