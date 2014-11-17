@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.marcin.myapplication" >
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -25,6 +28,11 @@
         <activity
             android:name=".FunActivity"
             android:label="@string/title_activity_fun"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.marcin.myapplication.PhotonDeviceListActivity"
+            android:label="@string/title_activity_photon_device_list" >
             android:screenOrientation="landscape" >
         </activity>
         <activity
