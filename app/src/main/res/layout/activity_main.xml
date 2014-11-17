@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <RelativeLayout
+        android:id="@+id/adventureLayout"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="33.33"
+        android:background="#E46F0A"
+        android:gravity="center"
+
+        >
+
+        <TextView android:text="Rozpocznij przygodę!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:padding="20dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/photonConnectionLayout"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="33.33"
+        android:background="#A40B54"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:padding="20dp"
+            android:gravity="center"
+            android:text="Połącz z Photonem"
+            android:id="@+id/connectionText" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="33.33"
+        >
+
+        <RelativeLayout
+            android:id="@+id/preferencesLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:background="#11766D"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Ustawienia"
+                android:textSize="25sp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:padding="20dp"
+                android:id="@+id/textView2"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/exitLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:background="#410936"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Wyjscie"
+                android:textSize="25sp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:padding="20dp"
+                android:id="@+id/textView3" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
