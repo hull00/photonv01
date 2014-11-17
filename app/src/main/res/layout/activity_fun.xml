@@ -11,7 +11,8 @@
         android:layout_height="0dp"
         android:layout_weight=".1"
         android:orientation="horizontal"
-        android:background="#ff14072d" android:gravity="center">
+        android:background="#ff14072d"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
