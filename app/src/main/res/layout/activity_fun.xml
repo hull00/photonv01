@@ -3,9 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="com.example.marcin.myapplication.AdventureActivity">
+    tools:context="com.example.marcin.myapplication.FunActivity">
 
-
+    <!--     Pasek z podstawowymi danymi robota    -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -14,11 +14,11 @@
         android:background="#ff14072d" android:gravity="center">
 
         <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
-    android:padding="5dp"
-    style="@style/MenuString"
-    android:text="Photon"/>
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            style="@style/MenuString"
+            android:text="Photon"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,109 +47,74 @@
     </LinearLayout>
 
 
-
+    <!--     Przyciski funkcyjne    -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight=".9"
         android:orientation="horizontal">
 
+        <!--     Lewa strona - przod/tyl    -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight=".5"
+            android:layout_weight=".4"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/funLayout"
+                android:id="@+id/ForwardLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".5"
                 android:gravity="center"
-                android:background="#FD8603">
-        <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-            style="@style/TileString"
-            android:text="Zabawa"/>
+                android:background="#ff6415a1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TileString"
+                    android:text="Do przodu"/>
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/compareLayout"
+                android:id="@+id/BackwardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="#ff7a388e">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TileString"
+                    android:text="Do tyłu"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--     Prawa strona - uderz   -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/HitLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".5"
                 android:gravity="center"
                 android:background="#432453">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TileString"
-                    android:text="Rywalizacja"/>
+                    android:text="Uderz"/>
 
             </RelativeLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".5"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/progressLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".5"
-                android:gravity="center"
-                android:background="#00CBE7">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TileString"
-                    android:text="Rozwijaj"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".5"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/challengeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".5"
-                android:gravity="center"
-                android:background="#ffe1e027">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TileString"
-                    android:text="Wyzwania"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/yourPhotonLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".5"
-                android:gravity="center"
-                android:background="#DF151A">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TileString"
-                    android:text="Twój Photon"/>
-
-            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

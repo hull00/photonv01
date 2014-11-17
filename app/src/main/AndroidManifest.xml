@@ -20,6 +20,11 @@
         <activity
             android:name="com.example.marcin.myapplication.AdventureActivity"
             android:label="@string/title_activity_adventure"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.marcin.myapplication.FunActivity"
+            android:label="@string/title_activity_fun"
             android:screenOrientation="landscape">
         </activity>
     </application>
