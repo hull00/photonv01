@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.example.marcin.myapplication.ChallengesActivity">
+
+    <!--     Pasek z podstawowymi danymi robota    -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:orientation="horizontal"
+        android:background="#ff14072d"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            style="@style/MenuString"
+            android:text="Photon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            style="@style/MenuString"
+            android:padding="5dp"
+            android:text="Nazwa"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            style="@style/MenuString"
+            android:text="Level:"
+            android:layout_marginLeft="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            style="@style/MenuString"
+            android:padding="5dp"
+            android:text="XX"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+
+    <!--    Glowny content    -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".9"
+        android:orientation="horizontal"
+        android:background="#ff261325" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Jakieś tam wyzwania"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:id="@+id/textView"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="visible"
+                android:textSize="33sp" />
+            </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

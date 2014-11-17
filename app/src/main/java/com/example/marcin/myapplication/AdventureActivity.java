@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 
@@ -26,12 +25,12 @@ public class AdventureActivity extends Activity {
             }
         });
 
-        RelativeLayout CompareButton = (RelativeLayout) findViewById(R.id.compareLayout);
-        CompareButton.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout CompetiionButton = (RelativeLayout) findViewById(R.id.competitonLayout);
+        CompetiionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(AdventureActivity.this, CompareActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(AdventureActivity.this, CompetitionActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -44,12 +43,12 @@ public class AdventureActivity extends Activity {
             }
         });
 
-        RelativeLayout ChallengeButton = (RelativeLayout) findViewById(R.id.challengeLayout);
-        ChallengeButton.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout ChallengesButton = (RelativeLayout) findViewById(R.id.challengesLayout);
+        ChallengesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(AdventureActivity.this, ChallengeActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(AdventureActivity.this, ChallengesActivity.class);
+                startActivity(intent);
             }
         });
 

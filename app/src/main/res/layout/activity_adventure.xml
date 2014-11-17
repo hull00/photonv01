@@ -75,7 +75,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/compareLayout"
+                android:id="@+id/competitonLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".5"
@@ -122,7 +122,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/challengeLayout"
+                android:id="@+id/challengesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".5"

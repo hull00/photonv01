@@ -1,0 +1,218 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.example.marcin.myapplication.CompetitionActivity">
+
+    <!--     Pasek z podstawowymi danymi robota    -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:orientation="horizontal"
+        android:background="#ff14072d"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            style="@style/MenuString"
+            android:text="Photon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            style="@style/MenuString"
+            android:padding="5dp"
+            android:text="Nazwa"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            style="@style/MenuString"
+            android:text="Level:"
+            android:layout_marginLeft="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            style="@style/MenuString"
+            android:padding="5dp"
+            android:text="XX"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+
+    <!--     Przyciski funkcyjne    -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".9"
+        android:orientation="horizontal">
+
+        <!--     Lewa strona - przod/tyl    -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/CompetitionForwardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="#ff15a141">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TileString"
+                    android:text="Do przodu"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/CompetitionBackwardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="#ff148b8e">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TileString"
+                    android:text="Do tyłu"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--     Srodek - ataki dystatnsowe   -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5">
+                    <RelativeLayout
+                        android:id="@+id/DistanceHitLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:background="#ff3c1c53">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TileString"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="Dystansowy1"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/DistanceHitLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:background="#ff302853">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TileString"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="Dystansowy3"/>
+
+                    </RelativeLayout>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5">
+                    <RelativeLayout
+                        android:id="@+id/DistanceHitLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:background="#ff411253">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TileString"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="Dystansowy2"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/DistanceHitLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:background="#ff341653">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TileString"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="Dystansowy4"/>
+
+                    </RelativeLayout>
+                    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+        <!--     Prawa strona - uderz    -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/CompetitionHitLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="#ffa1135b">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TileString"
+                    android:text="Uderz"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
