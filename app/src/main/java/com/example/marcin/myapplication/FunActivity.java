@@ -26,16 +26,12 @@ public class FunActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if(BackwardButton.isPressed()){
-                        Toast.makeText(getApplicationContext(),"Chyba nie srałeś, nie wciskaj dwóch na raz", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                    v.setBackgroundColor(0x7A0223);
+                   v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     v.setBackgroundColor(0xff6415a1);
                 }
 
-                return false;
+                return true;
             }
         });
 
@@ -45,16 +41,12 @@ public class FunActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if(ForwardButton.isPressed()){
-                        Toast.makeText(getApplicationContext(),"Chyba nie srałeś, nie wciskaj dwóch na raz", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                    v.setBackgroundColor(0x7A0223);
+                    v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     v.setBackgroundColor(0xff7a388e);
                 }
 
-                return false;
+                return true;
             }
         });
 
@@ -63,12 +55,12 @@ public class FunActivity extends Activity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                   v.setBackgroundColor(0x7A0223);
+                   v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
-                    v.setBackgroundColor(0x432453);
+                    v.setBackgroundColor(0xFF432453);
                 }
 
-                return false;
+                return true;
             }
         });
     }
@@ -94,5 +86,11 @@ public class FunActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

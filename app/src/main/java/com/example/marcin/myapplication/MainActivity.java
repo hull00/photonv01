@@ -54,6 +54,9 @@ public class MainActivity extends Activity {
                     photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 66.67f));
                     connectionText.setText("Połącz z Photonem");
                 }else {
+                    
+
+
                     enable(adventureButton);
                     adventureButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
                     photonConnectionButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 33.33f));
