@@ -136,6 +136,13 @@ public class PhotonDeviceListActivity extends Activity {
     }
 
     @Override
+    protected void onStop() {
+        myBluetoothAdapter.cancelDiscovery();
+        unregisterReceiver(mReceiver);
+        super.onStop();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_photon_device_list, menu);
