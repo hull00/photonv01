@@ -32,16 +32,18 @@
         </activity>
         <activity
             android:name="com.example.marcin.myapplication.PhotonDeviceListActivity"
-            android:label="@string/title_activity_photon_device_list" >
+            android:label="@string/title_activity_photon_device_list"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.marcin.myapplication.ChallengesActivity"
-            android:label="@string/title_activity_challenges" >
+            android:label="@string/title_activity_challenges"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name="com.example.marcin.myapplication.CompetitionActivity"
-            android:label="@string/title_activity_competition" >
+            android:label="@string/title_activity_competition"
+            android:screenOrientation="landscape">
         </activity>
 
         <service
