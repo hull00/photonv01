@@ -54,11 +54,13 @@
 
         <activity
             android:name=".YourPhotonActivity"
-            android:label="@string/title_activity_your_photon" >
+            android:label="@string/title_activity_your_photon"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".ProgressActivity"
-            android:label="@string/title_activity_progress" >
+            android:label="@string/title_activity_progress"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
