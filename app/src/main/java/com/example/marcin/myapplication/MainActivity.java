@@ -59,9 +59,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        //zablokowanie adventure do czasu połączenia z Photonem
-        this.disable(adventureButton);
-
         //endregion ADVENTURE
 
         /*
@@ -159,6 +156,9 @@ public class MainActivity extends Activity {
         });
 
         //endregion EXIT
+
+        //zablokowanie adventure do czasu połączenia z Photonem
+        this.disable(adventureButton);
     }
 
     @Override
