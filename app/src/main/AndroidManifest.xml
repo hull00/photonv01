@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.marcin.myapplication.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -21,36 +21,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.marcin.myapplication.AdventureActivity"
+            android:name=".AdventureActivity"
             android:label="@string/title_activity_adventure"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.marcin.myapplication.FunActivity"
+            android:name=".FunActivity"
             android:label="@string/title_activity_fun"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.marcin.myapplication.PhotonDeviceListActivity"
+            android:name=".PhotonDeviceListActivity"
             android:label="@string/title_activity_photon_device_list"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.marcin.myapplication.ChallengesActivity"
+            android:name=".ChallengesActivity"
             android:label="@string/title_activity_challenges"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.marcin.myapplication.CompetitionActivity"
+            android:name=".CompetitionActivity"
             android:label="@string/title_activity_competition"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
 
         <service
-            android:name="com.example.marcin.myapplication.BluetoothService"
+            android:name=".BluetoothService"
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <activity
+            android:name=".YourPhotonActivity"
+            android:label="@string/title_activity_your_photon" >
+        </activity>
+        <activity
+            android:name=".ProgressActivity"
+            android:label="@string/title_activity_progress" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,5 +9,7 @@
     <string name="title_activity_challenges">ChallengesActivity</string>
     <string name="title_activity_competition">CompetitionActivity</string>
     <string name="title_activity_photon_device_list">PhotonDeviceListActivity</string>
+    <string name="title_activity_your_photon">YourPhotonActivity</string>
+    <string name="title_activity_progress">ProgressActivity</string>
 
 </resources>
