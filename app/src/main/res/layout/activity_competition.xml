@@ -125,7 +125,7 @@
                         android:layout_height="0dp"
                         android:layout_weight=".75"
                         android:gravity="center"
-                        android:background="#ff3c1c53">
+                        android:background="#ffa3acb1">
                         <ListView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -133,7 +133,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/DistanceHitLayout3"
+                        android:id="@+id/DistanceHitLayout"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight=".25"

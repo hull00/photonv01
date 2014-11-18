@@ -38,8 +38,8 @@ public class AdventureActivity extends Activity {
         ProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(AdventureActivity.this, ProgressActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(AdventureActivity.this, ProgressActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -56,8 +56,8 @@ public class AdventureActivity extends Activity {
         YourPhotonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(AdventureActivity.this, YourPhotonActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(AdventureActivity.this, YourPhotonActivity.class);
+                startActivity(intent);
             }
         });
     }
