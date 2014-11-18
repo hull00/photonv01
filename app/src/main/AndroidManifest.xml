@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.marcin.myapplication.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -21,12 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AdventureActivity"
+            android:name="com.example.marcin.myapplication.AdventureActivity"
             android:label="@string/title_activity_adventure"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".FunActivity"
+            android:name="com.example.marcin.myapplication.FunActivity"
             android:label="@string/title_activity_fun"
             android:screenOrientation="landscape" >
         </activity>
@@ -36,13 +36,19 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ChallengesActivity"
+            android:name="com.example.marcin.myapplication.ChallengesActivity"
             android:label="@string/title_activity_challenges" >
         </activity>
         <activity
-            android:name=".CompetitionActivity"
+            android:name="com.example.marcin.myapplication.CompetitionActivity"
             android:label="@string/title_activity_competition" >
         </activity>
+
+        <service
+            android:name="com.example.marcin.myapplication.BluetoothService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>

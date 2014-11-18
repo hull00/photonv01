@@ -128,8 +128,8 @@ public class PhotonDeviceListActivity extends Activity {
         photonDeviceListView.setAdapter(adapter);
         stateDiscoverLabel.setText("Trwa wyszukiwanie...");
         findText.setText("Wyszukiwanie w toku...");
-        //zapobiegawczo zatrzymujemy aktualne wyszukiwanie i rozpoczynamy nowe
 
+        //zapobiegawczo zatrzymujemy aktualne wyszukiwanie i rozpoczynamy nowe
         myBluetoothAdapter.cancelDiscovery();
         myBluetoothAdapter.startDiscovery();
 
