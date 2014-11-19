@@ -80,22 +80,9 @@
                 android:orientation="vertical">
 
                 <ListView
-                    android:id="@+id/photonDevicePairedListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".5"
-                    android:padding="10dp"
-                    android:textColor="@android:color/white"
-                    android:textSize="25sp">
-
-                </ListView>
-
-                <ListView
                     android:id="@+id/photonDeviceListView"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".5"
-                    android:layout_below="@+id/photonDevicePairedListView"
+                    android:layout_height="match_parent"
                     android:padding="10dp"
                     android:textColor="@android:color/white"
                     android:textSize="25sp">

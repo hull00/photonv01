@@ -49,8 +49,7 @@ public class MainActivity extends Activity {
         */
         //region ADVENTURE
 
-        //klikalny obszar layoutu - Adventure
-        adventureButton = (RelativeLayout) findViewById(R.id.adventureLayout);
+        adventureButton = (RelativeLayout) findViewById(R.id.adventureLayout); //klikalny obszar layoutu - Adventure
         adventureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +91,7 @@ public class MainActivity extends Activity {
 
                 } else {
                     // jezeli service jest spiety z naszym activity to go rozpinamy
+                    //myBluetoothService.disconnect();
                     unbindService(myServiceConnection);
                     isBound = false;
 
@@ -173,6 +173,8 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, BluetoothService.class);
                 bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
 
+                myBluetoothService.connect();
+
                 //odblokowanie przycisku Adventure
                 this.enable(adventureButton);
             }
@@ -248,7 +250,6 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public static BluetoothService getBluetoothService() {
         return myBluetoothService;
     }
@@ -288,5 +289,7 @@ public class MainActivity extends Activity {
     }
 
     //endregion
+
+
 
 }
