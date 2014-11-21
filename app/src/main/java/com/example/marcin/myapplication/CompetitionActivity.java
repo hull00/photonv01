@@ -42,9 +42,11 @@ public class CompetitionActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    MainActivity.getBluetoothService().send("w");
                     v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     v.setBackgroundColor(0xff9ea119);
+                    MainActivity.getBluetoothService().send("s");
                 }
 
                 return true;
@@ -58,8 +60,10 @@ public class CompetitionActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    MainActivity.getBluetoothService().send("x");
                     v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
+                    MainActivity.getBluetoothService().send("s");
                     v.setBackgroundColor(0xff148b8e);
                 }
 
@@ -74,6 +78,7 @@ public class CompetitionActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    MainActivity.getBluetoothService().send("r");
                     v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     v.setBackgroundColor(0xffa1135b);

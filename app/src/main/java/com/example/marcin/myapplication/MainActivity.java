@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Menu;
@@ -20,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
     /*
         zmienne potrzebne do Bluetooth
@@ -81,6 +83,10 @@ public class MainActivity extends Activity {
                         return;
                     }
 
+                    //jeżeli obsługuje utwórz Service
+                    Intent intent = new Intent(MainActivity.this, BluetoothService.class);
+                    bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
+
                     // urządzenie obsługuje Bluetooth ale nie jest wlaczony
                     if (!myBluetoothAdapter.isEnabled()) {
                         Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -90,11 +96,11 @@ public class MainActivity extends Activity {
                     }
 
                 } else {
-                    // jezeli service jest spiety z naszym activity to go rozpinamy
-                    //myBluetoothService.disconnect();
-                    unbindService(myServiceConnection);
-                    isBound = false;
 
+                    if(getBluetoothService().getState())
+                        getBluetoothService().disconnect();
+
+                    isBound = false;
                     disable(adventureButton);
                     CoreDevice.activeDevice = null;
                 }
@@ -134,6 +140,9 @@ public class MainActivity extends Activity {
                 // Add the buttons
                 builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        if(getBluetoothService().getState())
+                            getBluetoothService().disconnect();
+                        CoreDevice.activeDevice = null;
                         finish();
                     }
                 });
@@ -169,11 +178,8 @@ public class MainActivity extends Activity {
             if (CoreDevice.activeDevice == null) {
 
             } else {
-                //jeżeli obsługuje utwórz Service
-                Intent intent = new Intent(MainActivity.this, BluetoothService.class);
-                bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
-
-                myBluetoothService.connect();
+               if(!getBluetoothService().getState())
+                 myBluetoothService.connect();
 
                 //odblokowanie przycisku Adventure
                 this.enable(adventureButton);
@@ -190,6 +196,10 @@ public class MainActivity extends Activity {
         // Add the buttons
         builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                if(getBluetoothService().getState())
+                    getBluetoothService().disconnect();
+
+                CoreDevice.activeDevice = null;
                 finish();
             }
         });
@@ -244,6 +254,20 @@ public class MainActivity extends Activity {
 
         if (id == R.id.action_about) {
             Toast.makeText(getApplicationContext(), "Tutaj pojawi się okno lub dialog o aplikacji", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (id == R.id.action_enable){
+            if(adventureButton.isEnabled()){
+                //odblokowanie przycisku Adventure
+                this.disable(adventureButton);
+                item.setTitle("Odblokuj przygodę");
+            } else {
+                //odblokowanie przycisku Adventure
+                this.enable(adventureButton);
+                item.setTitle("Zablokuj przygodę");
+            }
+
             return true;
         }
 

@@ -98,7 +98,7 @@ public class BluetoothService extends Service {
     */
     //region SERVICE_PUBLIC_METHOD
     public void connect() {
-        Log.i("ServiceBT","connect");
+        Log.i("ServiceBT","connectMethod");
 
         //CONNECT
         myConnectThread = new ConnectThread(CoreDevice.activeDevice);
@@ -108,6 +108,11 @@ public class BluetoothService extends Service {
     public void disconnect() {
         //DISCONNECT
         myConnectThread.cancel();
+    }
+
+    public void send(String string){
+        //SEND BLUETOOTH DATA
+        connectedThread.write(string.getBytes());
     }
 
     public Boolean getState() {
@@ -147,14 +152,22 @@ public class BluetoothService extends Service {
             try {
                 // Connect the device through the socket. This will block
                 // until it succeeds or throws an exception
+                Log.i("connectThread","connectTry1");
                 mmSocket.connect();
+                Log.i("connectThread","connect1Success");
+                isConnected = true;
             } catch (IOException connectException) {
                 // Unable to connect; close the socket and get out
+                Log.i("connectThread","connect1Fail");
                try{
-                ConnectedThread.sleep(1000);
-                mmSocket.connect();
+                   this.sleep(1000);
+                   Log.i("connectThread","connect2Try");
+                   mmSocket.connect();
+                   Log.i("connectThread","connect2Success");
                }catch (IOException connectException2) {
                    try {
+                       Log.i("connectThread","connect2fail");
+                       isConnected = false;
                        mmSocket.close();
                    } catch (IOException closeException) {
                    }
@@ -173,6 +186,7 @@ public class BluetoothService extends Service {
         /** Will cancel an in-progress connection, and close the socket */
         public void cancel() {
             try {
+                isConnected=false;
                 mmSocket.close();
             } catch (IOException e) { }
         }
@@ -193,7 +207,11 @@ public class BluetoothService extends Service {
             try {
                 tmpIn = socket.getInputStream();
                 tmpOut = socket.getOutputStream();
-            } catch (IOException e) { }
+                Log.i("connectedThread","StreamSuccess");
+
+            } catch (IOException e) {
+                Log.i("connectedThread","StreamFail");
+            }
 
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
@@ -221,9 +239,12 @@ public class BluetoothService extends Service {
         /* Call this from the main activity to send data to the remote device */
         public void write(byte[] bytes) {
             try {
+                //Log.i("write", "try: "+ new String(bytes));
                 mmOutStream.write(bytes);
-                Log.i("write", new String(bytes));
-            } catch (IOException e) { }
+                //Log.i("write", new String(bytes));
+            } catch (IOException e) {
+                Log.i("write", "fail");
+            }
         }
 
         /* Call this from the main activity to shutdown the connection */

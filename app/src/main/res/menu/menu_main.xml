@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_enable" android:title="Odblokuj przygodę" android:orderInCategory="99" android:showAsAction="never"></item>
     <item android:id="@+id/action_about_photon" android:title="Projekt Photon "
         android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/action_about" android:title="Wersja aplikacji "
