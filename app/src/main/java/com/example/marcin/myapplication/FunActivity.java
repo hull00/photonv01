@@ -6,12 +6,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -22,9 +24,10 @@ public class FunActivity extends Activity implements SensorEventListener{
     private RelativeLayout BackwardButton;
     private RelativeLayout LeftButton;
     private RelativeLayout RightButton;
+    private LinearLayout HitButton;
     private LinearLayout LeftRightButtons;
 
-    private String steeringOption;
+    private boolean sensorSteeringON = false;
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -33,8 +36,6 @@ public class FunActivity extends Activity implements SensorEventListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fun);
-
-        steeringOption = "buttons";
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -110,7 +111,7 @@ public class FunActivity extends Activity implements SensorEventListener{
         LeftRightButtons = (LinearLayout) findViewById(R.id.LeftRightLayout);
 
 
-        LinearLayout HitButton = (LinearLayout) findViewById(R.id.HitLayout);
+        HitButton = (LinearLayout) findViewById(R.id.HitLayout);
         HitButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -128,6 +129,8 @@ public class FunActivity extends Activity implements SensorEventListener{
             }
         });
 
+        LeftRightButtons = (LinearLayout) findViewById(R.id.LeftRightLayout);
+
         if(!moveManager.isAlive()){
             moveManager.start();
         }
@@ -144,12 +147,14 @@ public class FunActivity extends Activity implements SensorEventListener{
     @Override
     protected void onResume() {
         super.onResume();
+        //rejestracja odczytu sensora
        // mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        //wyrejestrowanie odczytu sensora
       //  mSensorManager.unregisterListener(this);
     }
 
@@ -168,7 +173,22 @@ public class FunActivity extends Activity implements SensorEventListener{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_steer_settings) {
+                Log.i("steer", "true");
+            if(sensorSteeringON){
+                LeftRightButtons.setEnabled(true);
+                LeftRightButtons.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, .5f));
+                HitButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, .5f));
+                item.setTitle("Sterowanie sensorem");
+            } else{
+                LeftRightButtons.setEnabled(false);
+                LeftRightButtons.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f));
+                HitButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+                item.setTitle("Sterowanie przyciskami");
+            }
+
+            sensorSteeringON = !sensorSteeringON;
+
             return true;
         }
 
@@ -191,7 +211,7 @@ public class FunActivity extends Activity implements SensorEventListener{
         // Do something with these orientation angles.
 
             //wlaczanie/wylaczanie sterowania przez akcelerometr
-            if(steeringOption.equals("akcelerometr")){
+            if(sensorSteeringON){
                 if (pitch_angle < -15) {
                     Photon.setRight();
                 } else if(pitch_angle > 15){
