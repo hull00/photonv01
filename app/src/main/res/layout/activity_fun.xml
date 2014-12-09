@@ -104,7 +104,7 @@
             android:layout_weight=".6"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/HitLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -117,7 +117,48 @@
                     style="@style/TileString"
                     android:text="Uderz"/>
 
-            </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LeftRightLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:orientation="horizontal"
+                >
+               <RelativeLayout
+                   android:id="@+id/LeftLayout"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight=".5"
+                   android:background="#ff148b8e"
+                   android:gravity="center">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       style="@style/TileString"
+                       android:text="Lewo"/>
+
+               </RelativeLayout>
+               <RelativeLayout
+                   android:id="@+id/RightLayout"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight=".5"
+                   android:background="#ff2c8e4c"
+                   android:gravity="center">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       style="@style/TileString"
+                       android:text="Prawo"/>
+
+
+               </RelativeLayout>
+
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
 

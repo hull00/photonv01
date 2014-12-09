@@ -44,8 +44,8 @@ public class BluetoothService extends Service {
 
                     Toast.makeText(getApplicationContext(), "Connect which "+ CoreDevice.activeDevice.getName().toString(), Toast.LENGTH_LONG).show();
 
-                    String s = "Successfully connected!";
-                    connectedThread.write(s.getBytes());
+                    //String s = "Successfully connected!";
+                    //connectedThread.write(s.getBytes());
                     break;
 
                 case MESSAGE_READ:
