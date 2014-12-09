@@ -2,27 +2,29 @@ package com.example.marcin.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 
 public class FunActivity extends Activity implements SensorEventListener{
 
     private RelativeLayout ForwardButton;
     private RelativeLayout BackwardButton;
+    private RelativeLayout LeftButton;
+    private RelativeLayout RightButton;
+    private LinearLayout LeftRightButtons;
+
+    private String steeringOption;
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -31,6 +33,8 @@ public class FunActivity extends Activity implements SensorEventListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fun);
+
+        steeringOption = "buttons";
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -70,7 +74,43 @@ public class FunActivity extends Activity implements SensorEventListener{
             }
         });
 
-        RelativeLayout HitButton = (RelativeLayout) findViewById(R.id.HitLayout);
+        LeftButton = (RelativeLayout) findViewById(R.id.LeftLayout);
+        LeftButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Photon.setLeft();
+                    v.setBackgroundColor(0xFF7A0223);
+                } else if(event.getAction() == MotionEvent.ACTION_UP && !Photon.isRight()) {
+                    v.setBackgroundColor(0xff148b8e);
+                    Photon.setAhead();
+                }
+
+                return true;
+            }
+        });
+        RightButton = (RelativeLayout) findViewById(R.id.RightLayout);
+        RightButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Photon.setRight();
+                    v.setBackgroundColor(0xFF7A0223);
+                } else if (event.getAction() == MotionEvent.ACTION_UP && !Photon.isLeft()) {
+                    v.setBackgroundColor(0xff2c8e4c);
+                    Photon.setAhead();
+                }
+
+                return true;
+            }
+        });
+
+        LeftRightButtons = (LinearLayout) findViewById(R.id.LeftRightLayout);
+
+
+        LinearLayout HitButton = (LinearLayout) findViewById(R.id.HitLayout);
         HitButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -104,13 +144,13 @@ public class FunActivity extends Activity implements SensorEventListener{
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_FASTEST);
+       // mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);
+      //  mSensorManager.unregisterListener(this);
     }
 
     @Override
@@ -150,14 +190,17 @@ public class FunActivity extends Activity implements SensorEventListener{
         float roll_angle = event.values[2];
         // Do something with these orientation angles.
 
-
-            if (pitch_angle < -15) {
-                Photon.setRight();
-            } else if(pitch_angle > 15){
-                Photon.setLeft();
-            } else {
-                Photon.setAhead();
+            //wlaczanie/wylaczanie sterowania przez akcelerometr
+            if(steeringOption.equals("akcelerometr")){
+                if (pitch_angle < -15) {
+                    Photon.setRight();
+                } else if(pitch_angle > 15){
+                    Photon.setLeft();
+                } else {
+                    Photon.setAhead();
+                }
             }
+
 
 
         //Log.i("Fun", "Azimuth: "+azimuth_angle + " Pitch: "+pitch_angle+" Roll: "+roll_angle);
