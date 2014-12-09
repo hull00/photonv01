@@ -185,7 +185,13 @@ public class FunActivity extends Activity implements SensorEventListener{
                             photonMessage = "w";
                         }
                     } else if (Photon.isBackward()) {
+                        if(Photon.isRight()){
+                            photonMessage = "z";
+                        } else if (Photon.isLeft()){
+                            photonMessage = "c";
+                        } else {
                             photonMessage = "x";
+                        }
                     } else {
                         if(Photon.isRight()){
                             photonMessage = "q";
