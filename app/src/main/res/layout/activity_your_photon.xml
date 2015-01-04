@@ -181,11 +181,63 @@
 
     </LinearLayout>
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight=".3"
+        android:layout_weight=".2"
+        android:background="#ff261325"
+        android:gravity="bottom">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ColorsTileString"
+            android:text="Wybierz poziom szybkości:"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
         android:background="#ff261325">
-
+            <RelativeLayout
+                android:id="@+id/SpeedFirstLevelLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#ffd8cc2b">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ColorsTileString"
+                    android:text="Poziom 1"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/SpeedSecondLevelLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#ffff6f00">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ColorsTileString"
+                    android:text="Poziom 2"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/SpeedThirdLevelLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#ffff1d00">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ColorsTileString"
+                    android:text="Poziom 3"/>
+            </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

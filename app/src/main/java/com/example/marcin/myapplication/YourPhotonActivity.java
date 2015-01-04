@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 public class YourPhotonActivity extends Activity {
 
-    private RelativeLayout WhiteButton, RedButton, YellowButton, GreenButton, BlueButton, PurpleButton;
+    private RelativeLayout WhiteButton, RedButton, YellowButton, GreenButton, BlueButton, PurpleButton, FirstLevelButton, SecondLevelButton, ThirdLevelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +112,54 @@ public class YourPhotonActivity extends Activity {
                     v.setBackgroundColor(0xFF7A0223);
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     v.setBackgroundColor(0xff6415a1);
+
+                }
+
+                return true;
+            }
+        });
+        FirstLevelButton = (RelativeLayout) findViewById(R.id.SpeedFirstLevelLayout);
+        FirstLevelButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    SendToPhoton("M");
+                    v.setBackgroundColor(0xFF7A0223);
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
+                    v.setBackgroundColor(0xffd8cc2b);
+
+                }
+
+                return true;
+            }
+        });
+        SecondLevelButton = (RelativeLayout) findViewById(R.id.SpeedSecondLevelLayout);
+        SecondLevelButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    SendToPhoton("N");
+                    v.setBackgroundColor(0xFF7A0223);
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
+                    v.setBackgroundColor(0xffff6f00);
+
+                }
+
+                return true;
+            }
+        });
+        ThirdLevelButton = (RelativeLayout) findViewById(R.id.SpeedThirdLevelLayout);
+        ThirdLevelButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    SendToPhoton("O");
+                    v.setBackgroundColor(0xFF7A0223);
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
+                    v.setBackgroundColor(0xffff1d00);
 
                 }
 
